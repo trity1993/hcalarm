@@ -1,0 +1,63 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/blue_bottom</item>
+        <item name="colorAccent">@color/green_highlight</item>
+        <!--设置默认背景都是白色-->
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowIsTranslucent">true</item>
+
+    </style>
+
+    <!-- AlarmSettingItem -->
+    <style name="AlarmSettingItem">
+        <item name="android:layout_width">24.0dip</item>
+        <item name="android:layout_height">24.0dip</item>
+        <item name="android:layout_marginLeft">15.0dip</item>
+        <item name="android:src">@drawable/step</item>
+    </style>
+    <!-- AlarmSetting RelativeLayout Layout -->
+    <style name="AlarmSettingLayout">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@drawable/bg_bottom_line</item>
+        <item name="android:paddingLeft">10.0dip</item>
+        <item name="android:paddingRight">10.0dip</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <!-- AlarmSetting Linear Layout -->
+    <style name="AlarmSettingLayout.linear">
+        <item name="android:paddingLeft">10.0dip</item>
+        <item name="android:paddingRight">10.0dip</item>
+        <item name="android:paddingTop">10.0dip</item>
+        <item name="android:paddingBottom">10.0dip</item>
+    </style>
+    <style name="AlarmSettingLayout.Relative">
+        <item name="android:paddingLeft">20.0dip</item>
+        <item name="android:paddingRight">20.0dip</item>
+        <item name="android:paddingTop">20.0dip</item>
+        <item name="android:paddingBottom">20.0dip</item>
+    </style>
+    <!-- info edit Relativelayout style -->
+    <style name="InfoRelativelayout">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@drawable/common_border_top_and_down_line_blue</item>
+        <item name="android:padding">@dimen/common_edge_padding</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <!-- SwipeBackLayout -->
+	<style name="SwipeBackLayout">
+        <item name="edge_size">50dip</item>
+        <item name="shadow_left">@drawable/shadow_left</item>
+        <item name="shadow_right">@drawable/shadow_right</item>
+        <item name="shadow_bottom">@drawable/shadow_bottom</item>
+    </style>
+    <!--登录注册页-->
+    <style name="SignEditText">
+
+    </style>
+</resources>

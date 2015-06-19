@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white" >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:scaleType="fitXY"
+        android:src="@drawable/battery" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/cover" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_horizontal" >
+
+        <TextView
+            android:id="@+id/tv_current_alram_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="100dp"
+            android:text="07:30"
+            android:textColor="@android:color/white"
+            android:textSize="30pt" />
+
+        <ImageButton 
+            android:id="@+id/ib_start_shake"
+            android:layout_below="@id/tv_current_alram_time"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@drawable/click"/>
+
+        
+    </RelativeLayout>
+
+</FrameLayout>

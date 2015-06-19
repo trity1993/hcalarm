@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/include_toolbar"
+        layout="@layout/include_toolbar" />
+    <TextView
+        android:id="@+id/sign_title_logo"
+        android:layout_below="@id/include_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:padding="@dimen/common_edge_padding_big"
+        android:layout_margin="@dimen/common_edge_margin_big"
+        android:text="@string/app_name"/>
+    <EditText
+        android:id="@+id/sign_et_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sign_title_logo"
+        android:layout_margin="@dimen/common_edge_margin_big"
+        android:drawableLeft="@drawable/phone"
+        android:hint="@string/phone_hint"
+        android:inputType="phone"
+        android:textSize="14sp"/>
+
+    <EditText
+        android:id="@+id/sign_et_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sign_et_phone"
+        android:layout_margin="@dimen/common_edge_margin_big"
+        android:drawableLeft="@drawable/password"
+        android:hint="@string/password_hint"
+        android:inputType="textPassword"
+        android:textSize="14sp"/>
+
+    <LinearLayout
+        android:id="@+id/register_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sign_et_pwd"
+        android:layout_margin="@dimen/common_edge_margin"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/sign_btn_reg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/common_edge_margin"
+            android:layout_weight="3"
+            android:background="@drawable/common_round_corner_green"
+            android:text="@string/register"
+            android:textColor="@android:color/white"/>
+        <Button
+            android:id="@+id/sign_btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/common_edge_margin"
+            android:background="@drawable/common_round_corner_blue"
+            android:layout_weight="1"
+            android:text="@string/login"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/register_layout"
+        android:layout_margin="@dimen/common_edge_margin"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/sign_btn_login_weibo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/common_edge_margin"
+            android:layout_weight="1"
+            android:background="@drawable/common_round_corner_white"
+            android:drawableLeft="@drawable/ic_weibo_48"
+            android:text="@string/third_login_weibo" />
+
+        <Button
+            android:id="@+id/sign_btn_login_tencent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/common_edge_margin"
+            android:layout_weight="1"
+            android:background="@drawable/common_round_corner_white"
+            android:drawableLeft="@drawable/ic_tencent_48"
+            android:text="@string/third_login_qq" />
+    </LinearLayout>
+
+</RelativeLayout>

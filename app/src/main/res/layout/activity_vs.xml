@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/vs_bg"
+        android:paddingTop="@dimen/common_edge_padding">
+
+        <ImageView
+            android:id="@+id/vs_iv_vs_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_edge_margin_big"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/vs" />
+
+        <ImageView
+            android:id="@+id/vs_iv_lighting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/pk_index" />
+
+        <ImageView
+            android:id="@+id/vs_iv_woman"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/vs_iv_lighting"
+            android:layout_toLeftOf="@+id/vs_iv_lighting"
+            android:src="@drawable/head_woman_small" />
+
+        <ImageView
+            android:id="@+id/vs_iv_man"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/vs_iv_lighting"
+            android:layout_toRightOf="@+id/vs_iv_lighting"
+            android:src="@drawable/man_small" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/common_edge_margin_big"
+            android:gravity="center"
+            android:text="你还有08小时21分钟就可以和小伙伴决斗了"
+            android:textColor="@color/grey_text_vs"
+            android:textSize="10sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="8"
+        android:background="@color/blue_bottom" >
+
+        <TextView
+            android:id="@+id/vs_tv_sure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="确定"
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
+    </RelativeLayout>
+
+</LinearLayout>

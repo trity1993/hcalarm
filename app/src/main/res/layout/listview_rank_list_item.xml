@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/common_edge_margin"
+    android:orientation="horizontal"
+    android:padding="@dimen/common_edge_margin" >
+
+    <TextView
+        android:id="@+id/rank_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:background="@drawable/rank_tv_title_blue_bg"
+		android:gravity="center"
+		android:textColor="@android:color/white"
+        android:layout_marginRight="@dimen/common_edge_margin" />
+
+    <ImageView
+        android:id="@+id/rank_iv_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="@dimen/common_edge_margin"
+        android:src="@drawable/head_small" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/rank_iv_head"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/rank_tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="张旭辉" />
+
+        <TextView
+            android:id="@+id/rank_tv_signature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="他从小就和屌"
+            android:textColor="@color/grey_text"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/common_edge_margin_small"
+        android:layout_toLeftOf="@+id/rank_tv_num"
+        android:src="@drawable/right_small" />
+
+    <TextView
+        android:id="@+id/rank_tv_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:text="99"
+        android:textColor="@color/green_highlight"
+        android:textSize="20sp" />
+
+</RelativeLayout>

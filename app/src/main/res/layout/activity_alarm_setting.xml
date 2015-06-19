@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/include_toolbar"
+        layout="@layout/include_toolbar" />
+
+    <LinearLayout style="@style/AlarmSettingLayout.linear">
+
+        <TextView
+            android:id="@+id/rank_tv_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="3dp"
+            android:layout_weight="1"
+            android:text="重复" />
+
+        <CheckBox
+            android:id="@+id/cb_mon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@drawable/alarm_set_btn_check_mon" />
+
+        <CheckBox
+            android:id="@+id/cb_tues"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@drawable/alarm_set_btn_check_tues" />
+
+        <CheckBox
+            android:id="@+id/cb_wed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@drawable/alarm_set_btn_check_wed" />
+
+        <CheckBox
+            android:id="@+id/cb_thurs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@drawable/alarm_set_btn_check_thurs" />
+
+        <CheckBox
+            android:id="@+id/cb_fri"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@drawable/alarm_set_btn_check_fri" />
+
+        <CheckBox
+            android:id="@+id/cb_satur"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@drawable/alarm_set_btn_check_staur" />
+
+        <CheckBox
+            android:id="@+id/cb_sun"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@drawable/alarm_set_btn_check_sun" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_set_tag"
+        style="@style/AlarmSettingLayout.Relative">
+
+        <TextView
+            android:id="@+id/tv_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="标签" />
+
+        <ImageView
+            android:id="@+id/rank_iv_head"
+            style="@style/AlarmSettingItem"
+            android:layout_alignBottom="@+id/tv_tag_edited"
+            android:layout_alignParentRight="true" />
+
+        <TextView
+            android:id="@+id/tv_tag_edited"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tv_tag"
+            android:layout_alignBottom="@+id/tv_tag"
+            android:layout_toLeftOf="@+id/rank_iv_head"
+            android:text="闹钟" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_set_bell"
+        style="@style/AlarmSettingLayout.Relative">
+
+        <TextView
+            android:id="@+id/tv_bell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="铃声" />
+
+        <ImageView
+            android:id="@+id/rank_tv_title"
+            style="@style/AlarmSettingItem"
+            android:layout_alignBottom="@+id/tv_bell_selected"
+            android:layout_alignParentRight="true" />
+
+        <TextView
+            android:id="@+id/tv_bell_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tv_bell"
+            android:layout_alignBottom="@+id/tv_bell"
+            android:layout_toLeftOf="@+id/rank_tv_title"
+            android:text="震动" />
+    </RelativeLayout>
+
+    <RelativeLayout style="@style/AlarmSettingLayout.Relative">
+
+        <TextView
+            android:id="@+id/tv_sound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="音量" />
+
+        <SeekBar
+            android:id="@+id/sb_sound"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/common_edge_margin"
+            android:layout_toRightOf="@id/tv_sound" />
+    </RelativeLayout>
+    <!-- 设置闹钟 -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="20dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <cn.hclab.alarm.ui.view.PickerView
+                    android:id="@+id/hour"
+                    android:layout_width="80dp"
+                    android:layout_height="160dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text=":"
+                android:textSize="30sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <cn.hclab.alarm.ui.view.PickerView
+                    android:id="@+id/mins"
+                    android:layout_width="80dp"
+                    android:layout_height="160dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_pick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/common_edge_margin_small"
+            android:background="@drawable/common_round_corner_green"
+            android:text="@string/sure"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
+
+</LinearLayout>

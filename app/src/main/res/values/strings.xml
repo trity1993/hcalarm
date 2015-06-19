@@ -1,0 +1,45 @@
+<resources>
+
+    <string name="app_name">梦唤闹钟</string>
+    <string name="alarm_create">创建闹钟</string>
+    <string name="sure">确    定</string>
+    <string name="unable_pressBack">清醒值未达标,无法退出</string>
+    <string name="press_back_again">再按一次退出</string>
+    <string name="shake_sense_value_one">11</string>
+    <string name="shake_sense_value_two">13</string>
+    <string name="shake_sense_value_three">17</string>
+    <string name="network_error">网络错误</string>
+    <string name="record_null">暂无记录</string>
+    <!-- 视觉差的引导页 -->
+    <string name="title">Planets!</string>
+    <string name="mercury">Mercury</string>
+    <string name="venus">Venus</string>
+    <string name="earth">Earth</string>
+    <string name="home">(Home)</string>
+    <string name="mars">Mars</string>
+    <string name="jupiter">Jupiter</string>
+    <string name="saturn">Saturn</string>
+    <string name="uranus">Uranus</string>
+    <string name="neptune">Neptune</string>
+    <!-- 星期 -->
+    <string name="day_of_week_monday">星期一</string>
+    <string name="day_of_week_tuesday">星期二</string>
+    <string name="day_of_week_wednesday">星期三</string>
+    <string name="day_of_week_thursday">星期四</string>
+    <string name="day_of_week_friday">星期五</string>
+    <string name="day_of_week_saturday">星期六</string>
+    <string name="day_of_week_sunday">星期日</string>
+    <!--第三方登录-->
+    <string name="third_login_qq">QQ登陆</string>
+    <string name="third_login_weibo">微博登陆</string>
+    <string name="weibo_login_error">微博登陆失败</string>
+    <string name="weibosdk_token_to_string_format">Token：%1$s \n有效期：%2$s</string>
+    <string name="weibosdk_token_has_existed">Token 仍在有效期内，无需再次登录。</string>
+    <string name="phone_hint">&#160;&#160;填写中国大陆手机号</string>
+    <string name="password_hint">&#160;6-14位，建议数字，字母，字符组合</string>
+    <string name="sms_key_hint">&#160;&#160;激活码</string>
+    <string name="register">注册</string>
+    <string name="login">登录</string>
+    <string name="info_signature">设置你的个性签名</string>
+
+</resources>

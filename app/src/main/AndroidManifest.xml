@@ -1,0 +1,130 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cn.hclab.alarm"
+    android:versionCode="2"
+    android:versionName="1.1" >
+    <!--网络权限-->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 用于调用 JNI -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!--写入权限-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 系统铃声的权限 -->
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
+    <permission android:name="android.permission.DISABLE_KEYGUARD" />
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!--震动权限-->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- 接收開機完成廣播 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <application
+        android:name=".ui.HcAlarmApp"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+
+        <activity
+            android:name=".ui.activity.SplashActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- 1.0的主Activity -->
+        <!-- 主activity -->
+        <activity
+            android:name=".ui.activity.ViewPageMainActivity" >
+        </activity>
+        <!-- 设置闹钟 -->
+        <activity android:name=".ui.activity.AlarmSettingActivity" >
+            <action android:name="android.intent.action.RINGTONE_PICKER" />
+        </activity>
+        <!-- 闹钟摇晃页面  ShakePhone -->
+        <activity
+            android:name=".ui.activity.AlarmShakePhoneActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- vs动画界面 -->
+        <activity
+            android:name=".ui.activity.VsAnimActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <!-- 注册界面 -->
+        <activity android:name=".ui.activity.SignActivity"
+            android:label="@string/login">
+        </activity>
+        <!-- 个人战绩 -->
+        <activity
+            android:name=".ui.activity.ExploitsActivity">
+        </activity>
+        <!-- 个人信息填写 -->
+        <activity
+            android:name=".ui.activity.InfoEditActivity" >
+        </activity>
+        <!--qq开发接口的调用-->
+        <activity android:name="com.tencent.connect.common.AssistActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:noHistory="true"
+            android:launchMode="singleTask" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="tencent1104698782" />
+            </intent-filter>
+        </activity>
+        <!--微博开发接口的调用-->
+        <activity
+            android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
+            android:configChanges="keyboardHidden|orientation"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false" >
+        </activity>
+        <!-- 微博手机短信注册页面 -->
+        <activity android:name="com.sina.weibo.sdk.register.mobile.MobileRegisterActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false" >
+        </activity>
+
+        <!-- 微博注册选择国家页面 -->
+        <activity android:name="com.sina.weibo.sdk.register.mobile.SelectCountryActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false" >
+        </activity>
+
+        <!-- service -->
+        <service
+            android:name=".service.AlarmService"
+            android:enabled="true" >
+            <intent-filter>
+                <action android:name="cn.hclab.alarm.service.BIND_AUTO_CREATE"/>
+            </intent-filter>
+        </service>
+        <!-- 注册广播 -->
+        <!-- 當手機重開機，所要執行的程式。 -->
+        <receiver android:name=".receiver.AlarmReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="ALARMMSG" />
+ <!-- 接收自定义的指定的广播,不支持引用，直接的字符串 -->
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+ <!-- 系统卸载的广播 -->
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

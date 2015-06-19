@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="image_portrait_sex">
+        <item>@drawable/man</item>
+        <item>@drawable/head_woman_big</item>
+    </array>
+    <array name="image_portrait_big">
+        <item>@drawable/head_big</item>
+        <item>@drawable/head_woman_big</item>
+        <item>@drawable/head_big_1</item>
+        <item>@drawable/head_big_2</item>
+        <item>@drawable/head_big_3</item>
+        <item>@drawable/head_big_4</item>
+        <item>@drawable/head_big_5</item>
+        <item>@drawable/head_big_6</item>
+        <item>@drawable/head_big_7</item>
+    </array>
+    <array name="image_portrait_small">
+        <item>@drawable/head_small</item>
+        <item>@drawable/head_small_1</item>
+        <item>@drawable/head_small_2</item>
+        <item>@drawable/head_small_3</item>
+        <item>@drawable/head_small_4</item>
+        <item>@drawable/head_small_5</item>
+        <item>@drawable/head_small_6</item>
+        <item>@drawable/head_small_7</item>
+    </array>
+    <array name="image_portrait_normal">
+        <item>@drawable/head_normal</item>
+        <item>@drawable/head_woman_nomal</item>
+        <item>@drawable/head_normal_1</item>
+        <item>@drawable/head_normal_2</item>
+        <item>@drawable/head_normal_3</item>
+        <item>@drawable/head_normal_4</item>
+        <item>@drawable/head_normal_5</item>
+        <item>@drawable/head_normal_6</item>
+        <item>@drawable/head_normal_7</item>
+    </array>
+
+    <string-array name="morning_motto">
+        <item>一年之季在于春，一日之计在于晨。</item>
+        <item>时间就像海绵里的水，只要愿挤，总还是有的。（鲁迅）</item>
+        <item>时间就是生命，时间就是速度，时间就是力量。（郭沫若）</item>
+        <item>要找出时间来考虑一下，一天中做了什么，是正号还是负号。（季米特洛夫）</item>
+        <item>清晨给你送来飞出地狱的羽翼；黑夜捎来指引你进入天堂的明星。（马隆）</item>
+        <item>清晨时光贵如金。</item>
+        <item>在所有的批评家中，最伟大、最正确、最天才的是时间。</item>
+        <item>上帝送黎明来，是赐给所有人的。</item>
+        <item>时间是由分秒积成的，善于利用零星时间的人，才会做出更大的成绩来。</item>
+        <item>一天之中最美好的时光在黎明。</item>
+        <item>欲觉闻晨钟令人发深省。</item>
+        <item>清晨时光贵如金。</item>
+    </string-array>
+
+</resources>

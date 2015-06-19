@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:background="@color/blue_bottom"
+        android:orientation="vertical" >
+
+        <cn.hclab.alarm.ui.view.SlideShowView
+            android:id="@+id/info_slideshowview"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+
+        <LinearLayout
+            android:id="@+id/info_image_scroll_dot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/common_edge_margin"
+            android:orientation="horizontal" />
+
+        <ImageView
+            android:id="@+id/info_iv_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/common_edge_padding" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="3"
+            android:orientation="horizontal" >
+
+            <!--<Button
+                android:id="@+id/info_btn_logout"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/common_edge_margin"
+                android:background="@drawable/common_round_corner_green"
+                android:drawableLeft="@drawable/person"
+                android:paddingLeft="@dimen/common_edge_padding_small"
+                android:text="注销"
+                android:textColor="@android:color/white"
+                android:visibility="gone" />-->
+            <ViewStub
+                android:id="@+id/viewstub_logout"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout="@layout/include_button"
+                android:layout_margin="@dimen/common_edge_margin"
+                android:paddingLeft="@dimen/common_edge_padding_small"/>
+
+            <Button
+                android:id="@+id/info_btn_login"
+                android:layout_width="75dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="@dimen/common_edge_margin_big"
+                android:background="@drawable/common_round_corner_green"
+                android:drawableLeft="@drawable/person"
+                android:paddingLeft="@dimen/common_edge_padding_small"
+                android:text="登录"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/info_btn_register"
+                android:layout_width="75dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="@dimen/common_edge_margin_big"
+                android:background="@drawable/common_round_corner_blue"
+                android:drawableLeft="@drawable/register_icon"
+                android:paddingLeft="@dimen/common_edge_padding_small"
+                android:text="注册"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="@dimen/common_edge_padding" >
+
+            <Button
+                android:id="@+id/info_btn_msg"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/common_edge_margin"
+                android:background="@drawable/common_round_corner_green"
+                android:drawableLeft="@drawable/data"
+                android:paddingLeft="@dimen/common_edge_padding_small"
+                android:text="个人资料"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/info_btn_ranking_list"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/common_edge_margin"
+                android:background="@drawable/common_round_corner_green"
+                android:drawableLeft="@drawable/ranking"
+                android:paddingLeft="@dimen/common_edge_padding_small"
+                android:text="周排行榜"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/info_btn_pk"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/common_edge_margin"
+                android:background="@drawable/common_round_corner_green"
+                android:drawableLeft="@drawable/pk_icon"
+                android:gravity="center"
+                android:paddingLeft="@dimen/common_edge_padding_small"
+                android:text="PK"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:paddingBottom="@dimen/common_edge_padding_big"
+            android:text="注册之后，可以和好友PK，想想都有点小激动"
+            android:textColor="@color/grey_text" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/adLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+</LinearLayout>
