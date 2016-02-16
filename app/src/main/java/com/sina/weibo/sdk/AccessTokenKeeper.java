@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
+import cc.trity.common.Common;
 import cc.trity.model.entities.Authentication;
 
 /**
@@ -16,10 +17,6 @@ import cc.trity.model.entities.Authentication;
 public class AccessTokenKeeper {
     private static final String PREFERENCES_NAME = "com_weibo_sdk_android";
 
-    private static final String KEY_UID           = "uid";
-    private static final String KEY_ACCESS_TOKEN  = "access_token";
-    private static final String KEY_EXPIRES_IN    = "expires_in";
-    private static final String KEY_REFRESH_TOKEN    = "refresh_token";
 
     /**
      * 保存 Token 对象到 SharedPreferences。
@@ -35,17 +32,17 @@ public class AccessTokenKeeper {
         SharedPreferences pref = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_APPEND);
         SharedPreferences.Editor editor = pref.edit();
 
-        editor.putString(KEY_UID, token.getUid());
-        authentication.setOpenid(token.getUid());
+        editor.putString(Common.KEY_UID, token.getUid());
+        authentication.setOpenId(token.getUid());
 
-        editor.putString(KEY_ACCESS_TOKEN, token.getToken());
-        authentication.setAccess_token(token.getToken());
+        editor.putString(Common.KEY_ACCESS_TOKEN, token.getToken());
+        authentication.setAccessToken(token.getToken());
 
-        editor.putString(KEY_REFRESH_TOKEN, token.getRefreshToken());//在有效期内，再次打开授权，会自动延长授权的有效时间
-        authentication.setFresh_access_token(token.getRefreshToken());
+        editor.putString(Common.KEY_REFRESH_TOKEN, token.getRefreshToken());//在有效期内，再次打开授权，会自动延长授权的有效时间
+        authentication.setFreshAccessToken(token.getRefreshToken());
         long start=System.currentTimeMillis();
-        authentication.setExpires_in("" + start + token.getExpiresTime());
-        editor.putLong(KEY_EXPIRES_IN, start + token.getExpiresTime());//过期时间 = 用户授权时间 + 授权有效期；审核通过的时候为7天，这里要做响应的运算
+        authentication.setExpiresIn("" + start + token.getExpiresTime());
+        editor.putLong(Common.KEY_EXPIRES_IN, start + token.getExpiresTime());//过期时间 = 用户授权时间 + 授权有效期；审核通过的时候为7天，这里要做响应的运算
         editor.commit();
 
         return authentication;
@@ -65,10 +62,10 @@ public class AccessTokenKeeper {
 
         Oauth2AccessToken token = new Oauth2AccessToken();
         SharedPreferences pref = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_APPEND);
-        token.setUid(pref.getString(KEY_UID, ""));
-        token.setToken(pref.getString(KEY_ACCESS_TOKEN, ""));
-        token.setRefreshToken(pref.getString(KEY_REFRESH_TOKEN, ""));
-        token.setExpiresTime(pref.getLong(KEY_EXPIRES_IN, 0));
+        token.setUid(pref.getString(Common.KEY_UID, ""));
+        token.setToken(pref.getString(Common.KEY_ACCESS_TOKEN, ""));
+        token.setRefreshToken(pref.getString(Common.KEY_REFRESH_TOKEN, ""));
+        token.setExpiresTime(pref.getLong(Common.KEY_EXPIRES_IN, 0));
 
         return token;
     }

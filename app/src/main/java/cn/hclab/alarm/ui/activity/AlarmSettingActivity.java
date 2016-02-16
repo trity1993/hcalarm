@@ -23,19 +23,23 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.InjectViews;
+import cc.trity.common.Common;
 import cc.trity.model.entities.AlarmMsg;
 import cn.hclab.alarm.R;
 import cn.hclab.alarm.api.OnEditTextListener;
 import cn.hclab.alarm.mvp.presenters.AlarmSetPresenter;
 import cn.hclab.alarm.mvp.views.AlarmSetView;
+import cn.hclab.alarm.receiver.AlarmReceiver;
 import cn.hclab.alarm.ui.HcAlarmApp;
-import cn.hclab.alarm.ui.activity.base.BaseActivity;
+import cn.hclab.alarm.ui.activity.base.AppBaseActivity;
 import cn.hclab.alarm.ui.dialog.EditTagDialog;
 import cn.hclab.alarm.ui.view.PickerView;
 import cn.hclab.alarm.ui.view.PickerView.onSelectListener;
 import cn.hclab.alarm.utils.Tools;
 
-public class AlarmSettingActivity extends BaseActivity implements
+public class AlarmSettingActivity extends AppBaseActivity implements
 		OnClickListener, OnEditTextListener,AlarmSetView {
     private Toolbar toolBar;
 	private Button btnPick;
@@ -46,49 +50,55 @@ public class AlarmSettingActivity extends BaseActivity implements
 	private EditTagDialog mEditDialog;
 	private SeekBar sbSound;
 	private AudioManager audioManager;
-	private CheckBox mon, tues, wed, thurs, fri, satur, sun;
+	private int alarmListPosition=-1;
+	@InjectViews({R.id.cb_mon,R.id.cb_tues,R.id.cb_wed,R.id.cb_thurs,R.id.cb_fri,R.id.cb_satur,R.id.cb_sun})
+	List<CheckBox> weekList;
 	private PickerView hour, min;
 
 	List<String> hours = new ArrayList<String>(); // 小时的初始化集合
 	List<String> mins = new ArrayList<String>();// 分钟的初始化集合
 	AlarmSetPresenter alarmSetPresenter;
+	private boolean isUpdate;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_alarm_setting);
+		ButterKnife.inject(this);
+		this.init(savedInstanceState);
+	}
 
+	@Override
+	public void initVariables() {
 		// 得到Application的信息
 		hcAlarmApp = (HcAlarmApp) getApplication();
 		// 得到闹钟配置
 		managerAlarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 		audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);//设置铃声
-		initView();
-		// 设置当前时间
-		Calendar c = Calendar.getInstance();
-		hour.setmCurrentSelected(c.get(Calendar.HOUR_OF_DAY));
-		min.setmCurrentSelected(c.get(Calendar.MINUTE));
-
-		alarmSetPresenter=new AlarmSetPresenter(this,hcAlarmApp);
+		//判断是否进行修改的闹钟，而不是创建闹钟
+		Intent intentUpdate=getIntent();
+		if(intentUpdate!=null){
+			AlarmMsg alarmMsg=(AlarmMsg)intentUpdate.getSerializableExtra(Common.ALARM_MSG);
+			if(alarmMsg!=null){
+				alarmListPosition=intentUpdate.getIntExtra(Common.ALARM_POSITION,-1);
+				viewSetting(alarmMsg);
+				isUpdate=true;
+				alarmSetPresenter=new AlarmSetPresenter(this,hcAlarmApp,alarmListPosition);
+				return ;
+			}
+		}
 	}
 
-	public void initView() {
+	@Override
+	public void initView(Bundle savedInstanceState) {
 		// 设置actionbar
-        toolBar=(Toolbar)findViewById(R.id.include_toolbar);
+		toolBar=(Toolbar)findViewById(R.id.include_toolbar);
 		if (toolBar != null){
-            trySetupToolbar(toolBar);
-        }
+			trySetupToolbar(toolBar);
+		}
 		// 设置标签
 		rlSetTag = (RelativeLayout) findViewById(R.id.rl_set_tag);
 		// 设置铃声
 		rlSetBell = (RelativeLayout) findViewById(R.id.rl_set_bell);
-		// 设置星期
-		mon = (CheckBox) findViewById(R.id.cb_mon);
-		tues = (CheckBox) findViewById(R.id.cb_tues);
-		wed = (CheckBox) findViewById(R.id.cb_wed);
-		thurs = (CheckBox) findViewById(R.id.cb_thurs);
-		fri = (CheckBox) findViewById(R.id.cb_fri);
-		satur = (CheckBox) findViewById(R.id.cb_satur);
-		sun = (CheckBox) findViewById(R.id.cb_sun);
 
 		hour = (PickerView) findViewById(R.id.hour);
 
@@ -149,13 +159,71 @@ public class AlarmSettingActivity extends BaseActivity implements
 		rlSetBell.setOnClickListener(this);
 	}
 
-	/*
-	 * 设置选择的星期
+	@Override
+	public void loadData() {
+		// 设置当前时间
+		Calendar c = Calendar.getInstance();
+		hour.setmCurrentSelected(c.get(Calendar.HOUR_OF_DAY));
+		min.setmCurrentSelected(c.get(Calendar.MINUTE));
+
+		alarmSetPresenter=new AlarmSetPresenter(this,hcAlarmApp);
+	}
+
+	/**
+	 * 根据alarmMsg的信息，尽心对view的更新
+	 * @param alarmMsg
+	 */
+	public void viewSetting(AlarmMsg alarmMsg){
+		//设置标签
+		tvTag.setText(alarmMsg.getLabel());
+		//设置显示的时间
+		long time=alarmMsg.getTimes();
+		Calendar calendar=Calendar.getInstance();
+		calendar.setTimeInMillis(time);
+		hour.setmCurrentSelected(calendar.get(Calendar.HOUR_OF_DAY));
+		min.setmCurrentSelected(calendar.get(Calendar.MINUTE));
+		//设置星期几
+		int [] weeks=alarmMsg.getWeeks();
+		for(int i=1;i<weeks.length;i++){
+			if(weeks[i]==1){
+				weekList.get(i-1).setChecked(true);
+			}
+		}
+	}
+
+	/**
+	 * 设置选择的星期,对勾选的日期进行处理
 	 */
 	public void alarmWeekSet(AlarmMsg alarmInfo) {
 		int[] weeks=new int[8];
-		StringBuffer sBuffer = new StringBuffer();
-		if (mon.isChecked() && tues.isChecked() && wed.isChecked()
+		String[] strDate=new String[]{"一","二","三","四","五","六","日"};
+		StringBuffer sBuffer = new StringBuffer("星期");
+		boolean isEveryDay=true;
+		int top=1;
+		for(CheckBox checkBox:weekList){
+			if(checkBox.isChecked()){
+				weeks[top]=1;
+				sBuffer.append(strDate[top-1]);
+				if(top==7){
+					weeks[0]=1;
+				}else
+					sBuffer.append(",");
+			}
+			else{
+				isEveryDay=false;
+			}
+			top++;
+		}
+		if(isEveryDay){
+			alarmInfo.setWeek("每天");
+		}else if(sBuffer.length()==2){//在初始化阶段，仅有“星期”，表示一次的状态
+			alarmInfo.setWeek("一次");
+		}else{
+			alarmInfo.setWeek(sBuffer.toString());
+		}
+		alarmInfo.setWeeks(weeks);
+
+		/*if (mon.isChecked() && tues.isChecked() && wed.isChecked()
 				&& thurs.isChecked() && fri.isChecked() && satur.isChecked()
 				&& sun.isChecked()){
 			for(int i=0;i<=7;i++){
@@ -207,7 +275,7 @@ public class AlarmSettingActivity extends BaseActivity implements
 			alarmInfo.setWeeks(weeks);
 			sBuffer.append("一次");
 			alarmInfo.setWeek(sBuffer.toString());
-		}
+		}*/
 		
 	}
 
@@ -309,6 +377,7 @@ public class AlarmSettingActivity extends BaseActivity implements
 
 	@Override
 	public void createAlarm(long timesMillis,int requestCode,Intent alarmIntent) {
+		alarmIntent.setClass(this, AlarmReceiver.class);
 		managerAlarm.set(AlarmManager.RTC_WAKEUP,
 				timesMillis, PendingIntent.getBroadcast(
 						getApplicationContext(), requestCode, alarmIntent,/* 发出指定的广播 */

@@ -6,22 +6,31 @@ import android.view.KeyEvent;
 import android.widget.Toast;
 
 import com.viewpagerindicator.CirclePageIndicator;
-import com.viewpagerindicator.PageIndicator;
 
 import cc.trity.common.Common;
 import cn.hclab.alarm.R;
-import cn.hclab.alarm.ui.activity.base.DelayActivity;
+import cn.hclab.alarm.ui.activity.base.AppBaseActivity;
 import cn.hclab.alarm.ui.adapter.ViewPagerFragmentAdapter;
 
-public class ViewPageMainActivity extends DelayActivity {
+public class ViewPageMainActivity extends AppBaseActivity {
 	ViewPagerFragmentAdapter mAdapter;
 	ViewPager mPager;
-	PageIndicator mIndicator;
+
 
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 		setContentView(R.layout.activity_view_page_circle);
+		this.init(arg0);
+	}
+
+	@Override
+	public void initVariables() {
+
+	}
+
+	@Override
+	public void initView(Bundle savedInstanceState) {
 		// 定义一个iewpager的adaper
 		mAdapter = new ViewPagerFragmentAdapter(getSupportFragmentManager());
 		// 定义个Pager，即布局中定义的那个pagerview
@@ -30,6 +39,11 @@ public class ViewPageMainActivity extends DelayActivity {
 		// 定义一个指示变量，即布局中定义的那个
 		CirclePageIndicator indicator = (CirclePageIndicator) findViewById(R.id.indicator);
 		indicator.setViewPager(mPager);
+	}
+
+	@Override
+	public void loadData() {
+
 	}
 
 	/*

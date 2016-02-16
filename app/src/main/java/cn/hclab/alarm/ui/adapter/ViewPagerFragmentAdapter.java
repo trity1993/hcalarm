@@ -31,10 +31,10 @@ public class ViewPagerFragmentAdapter extends FragmentPagerAdapter {
       return ViewPagerFragmentAdapter.CONTENT[position % CONTENT.length];
     }
 
-    public void setCount(int count) {
+   /* public void setCount(int count) {
         if (count > 0 && count <= 10) {
             mCount = count;
             notifyDataSetChanged();
         }
-    }
+    }*/
 }

@@ -6,11 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import cn.hclab.alarm.ui.fragment.InfoFragment;
-import cn.hclab.alarm.ui.fragment.MainFragment;
 public final class ViewPagerFragment extends Fragment {
     private static final String KEY_CONTENT = "TestFragment:Content";
-    public int currentNum;
 	public static Fragment newInstance(String content,int currentNum) {
 		Fragment mFragment=null;
 		Log.d("currentNum=",currentNum+"");

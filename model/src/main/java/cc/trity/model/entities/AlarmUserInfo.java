@@ -10,7 +10,7 @@ public class AlarmUserInfo {
     private String password;
     private String nickName;
     private String sex;
-    private String head;
+    private String head;//头像的ImageUrl地址
     private String says;
     private String num;
     private Authentication authentication;//存储验证的信息

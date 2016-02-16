@@ -21,10 +21,10 @@ import cn.hclab.alarm.mvp.presenters.SignPresenter;
 import cn.hclab.alarm.mvp.presenters.SignPresenterImpl;
 import cn.hclab.alarm.mvp.views.SignView;
 import cn.hclab.alarm.ui.HcAlarmApp;
-import cn.hclab.alarm.ui.activity.base.BaseActivity;
+import cn.hclab.alarm.ui.activity.base.AppBaseActivity;
 import cn.hclab.alarm.utils.Tools;
 
-public class SignActivity extends BaseActivity implements SignView {
+public class SignActivity extends AppBaseActivity implements SignView {
 
     @InjectView(R.id.include_toolbar) Toolbar toolbar;
     //微博，腾讯
@@ -46,15 +46,28 @@ public class SignActivity extends BaseActivity implements SignView {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sign);// 加载布局
         ButterKnife.inject(this);
-		// 得到共享数据
-		hcAlarmApp = (HcAlarmApp) getApplication();
-
-        trySetupToolbar(toolbar);
-
-        signPresenter=new SignPresenterImpl(this,SignActivity.this,hcAlarmApp);
+        this.init(savedInstanceState);
 	}
 
-	@OnClick({R.id.sign_btn_login_weibo,R.id.sign_btn_login_tencent,R.id.sign_btn_reg,R.id.sign_btn_login})
+    @Override
+    public void initVariables() {
+        // 得到共享数据
+        hcAlarmApp = (HcAlarmApp) getApplication();
+    }
+
+    @Override
+    public void initView(Bundle savedInstanceState) {
+        trySetupToolbar(toolbar);
+
+    }
+
+    @Override
+    public void loadData() {
+        signPresenter=new SignPresenterImpl(this,SignActivity.this,hcAlarmApp);
+
+    }
+
+    @OnClick({R.id.sign_btn_login_weibo,R.id.sign_btn_login_tencent,R.id.sign_btn_reg,R.id.sign_btn_login})
 	public void onClick(View view) {
 		switch (view.getId()) {
 		    case R.id.sign_btn_reg:

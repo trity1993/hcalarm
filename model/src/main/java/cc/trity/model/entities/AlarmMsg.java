@@ -1,11 +1,13 @@
 package cc.trity.model.entities;
 
-public class AlarmMsg {
-	private String label;
-	private String time;
-	private String week;//用与显示日期
-	private long times;
-	private boolean isOpen;
+import java.io.Serializable;
+
+public class AlarmMsg implements Serializable {
+	private String label;//具体标签
+	private String time;//时间的格式
+	private String week;//用与显示星期
+	private long times;//转化成微妙的具体时间
+	private boolean isOpen;//是否关闭
 	private int [] weeks;//存储星期,用于匹配闹铃
 	public int[] getWeeks() {
 		return weeks;

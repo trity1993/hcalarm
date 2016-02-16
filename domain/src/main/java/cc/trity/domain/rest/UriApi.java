@@ -30,4 +30,6 @@ public interface UriApi<I,O> {
 
     @GET("/{path}")
     void getMutiData(@Path("path") String path, @QueryMap Map<I, I> options, Callback<O> callback);
+
+
 }

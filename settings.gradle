@@ -1,1 +1,2 @@
-include ':app', ':common', ':domain', ':domain', ':model'
+include ':app', ':common', ':domain', ':domain', ':model', ':trity_library'
+project(':trity_library').projectDir = new File('library')

@@ -23,7 +23,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 			// 监听闹钟发出执行的广播
 			AlarmManager am = (AlarmManager) context
 					.getSystemService(Context.ALARM_SERVICE);
-			
+			Log.e("getResultCode",getResultCode()+"");
 			am.cancel(PendingIntent.getBroadcast(context, getResultCode(),
 					new Intent(context, AlarmReceiver.class),
 					PendingIntent.FLAG_CANCEL_CURRENT));// 取消当前所执行的闹钟

@@ -2,7 +2,7 @@ package cc.trity.common;
 
 public class Common {
     //服务端
-    public static final String API_URL ="http://entersgu.hclab.cn/entersgu/Handler/";
+    public static final String WEIBO_API_URL ="https://api.weibo.com/2/users";
     //腾讯秘钥
     public static final String TENCENT_APP_ID="1104698782";//1104698782,222222
     public static final String TENCENT_APP_SECRET="BE4H8noJNntQX6Ny";
@@ -11,6 +11,11 @@ public class Common {
     public static final String WEIBO_APP_ID="1276595402";//1276595402,测试：2045436852
     public static final String WEIBO_TAG_PHONE="weibo_phone";
     public static final String WEIBO_TAG_ALL="weibo_all";
+
+    public static final String KEY_UID           = "uid";
+    public static final String KEY_ACCESS_TOKEN  = "access_token";
+    public static final String KEY_EXPIRES_IN    = "expires_in";
+    public static final String KEY_REFRESH_TOKEN    = "refresh_token";
     /*
     建议使用默认回调页：https://api.weibo.com/oauth2/default.html
      */
@@ -66,4 +71,6 @@ public class Common {
     public static final int SHAKE_SENSE_VALUE_THREE = 17;
     public static final int SHAKE_SENSE_VALUE_TWO = 13;
     public static final int SHAKE_SENSE_VALUE_ONE = 11;
+
+    public static final String ALARM_POSITION="alarm_position";
 }

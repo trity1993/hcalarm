@@ -1,6 +1,5 @@
 package cc.trity.domain.rest;
 
-import cc.trity.common.Common;
 import retrofit.RestAdapter;
 
 /**
@@ -10,10 +9,10 @@ public class PostDataSource<I,O> {
     private cc.trity.domain.rest.UriApi<I, O> uriApi;
     private static PostDataSource postDatabase;
     private PostDataSource(){//默认使用私有的构造函数，使用自家的url进行测试
-        RestAdapter restAdapter=new RestAdapter.Builder()
-                .setEndpoint(Common.API_URL).setClient(new TimeOutUrilConClient()).setLogLevel(RestAdapter.LogLevel.FULL)
-                .build();
-        uriApi=restAdapter.create(cc.trity.domain.rest.UriApi.class);
+//        RestAdapter restAdapter=new RestAdapter.Builder()
+//                .setEndpoint(Common.API_URL).setClient(new TimeOutUrilConClient()).setLogLevel(RestAdapter.LogLevel.FULL)
+//                .build();
+//        uriApi=restAdapter.create(cc.trity.domain.rest.UriApi.class);
     }
     private PostDataSource(String API_URL){
         RestAdapter restAdapter=new RestAdapter.Builder()

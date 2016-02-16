@@ -77,7 +77,7 @@ public class NetGetTask<I,P,O> extends AsyncTask<I,P,O> {
             String strJson = outPut.toString();
 
             try {
-                String key = Tools.hashKeyForDisk(System.currentTimeMillis()+"");//使用当前时间保持唯一性
+                String key = Tools.hashKeyForDisk(System.currentTimeMillis()+"");//使用当前时间保持唯一性,这样做如何查找是一个问题
                 DiskLruCache.Editor editor = mDiskLruCache.edit(key);
                 if (editor != null) {
                     OutputStream outputStream = editor.newOutputStream(0);//这里设置为0，是因为初始化mDiskLruCache时的open参数为valueCount=1。从0开始取

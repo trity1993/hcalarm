@@ -7,10 +7,12 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +30,8 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.InjectViews;
 import butterknife.OnClick;
+import cc.trity.common.Common;
+import cc.trity.model.entities.AlarmMsg;
 import cn.hclab.alarm.R;
 import cn.hclab.alarm.receiver.AlarmReceiver;
 import cn.hclab.alarm.ui.HcAlarmApp;
@@ -61,6 +65,7 @@ public class MainFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		Log.e(MainFragment.this.getTag(),"onCreateView");
 		// TODO Auto-generated method stub
 		rootView = inflater.inflate(R.layout.fragment_main, null);
 		ButterKnife.inject(this, rootView);
@@ -82,6 +87,12 @@ public class MainFragment extends Fragment {
 			public void onItemClick(AdapterView<?> parent, View view, int position,
 					long id) {
 				Tools.ToastUtils(mActivity.getApplicationContext(), "单击" + position);
+				//跳转到设置页面
+				AlarmMsg alarmMsg=(AlarmMsg)ala.getItem(position);
+				Intent intent=new Intent(mActivity,AlarmSettingActivity.class);
+				intent.putExtra(Common.ALARM_MSG,alarmMsg);
+				intent.putExtra(Common.ALARM_POSITION,position);
+				startActivityForResult(intent, UPDATE_VIEW);
 			}
 		});
 		lvAlarmListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {//长按的删除
@@ -180,10 +191,13 @@ public class MainFragment extends Fragment {
 		AlarmManager mAlarmManager = (AlarmManager) mActivity
 				.getSystemService(Context.ALARM_SERVICE);
 		// 取消此闹钟
+		Intent intent=new Intent(Common.ALARM_MSG);//实质是setAction的操作
+		intent.setClass(mActivity.getApplicationContext(),
+				AlarmReceiver.class);
+		intent.setData(Uri.parse("content://calendar/calendar_alerts/1"));
 		mAlarmManager.cancel(PendingIntent.getBroadcast(mActivity
 				.getApplicationContext(), hcAlarmApp.getAlarmListItem(position)
-				.getId(), new Intent(mActivity.getApplicationContext(),
-				AlarmReceiver.class), PendingIntent.FLAG_CANCEL_CURRENT));
+				.getId(), intent, PendingIntent.FLAG_CANCEL_CURRENT));
 
 		hcAlarmApp.removeAlarmListItem(position);
 
@@ -203,8 +217,10 @@ public class MainFragment extends Fragment {
 				}
 				if(ala==null)//解决第一次创建的时候，没有子项问题，原来是子项还有加进去，适配器为null
 					ala=new AlarmListAdapter(mActivity, hcAlarmApp.getAlarmList());
-				if(lvAlarmListView!=null)
-				lvAlarmListView.setAdapter(ala);
+				if(lvAlarmListView!=null){
+					lvAlarmListView.setAdapter(ala);
+				}
+
 				break;
 			default:
 				break;
@@ -215,8 +231,28 @@ public class MainFragment extends Fragment {
 	@Override
 	public void onPause() {
 		super.onPause();
+		Log.e(MainFragment.this.getTag(),"onPause");
 		hcAlarmApp.saveAlarmList(hcAlarmApp.getAlarmList());
 	}
+
+	@Override
+	public void onStop() {
+		super.onStop();
+		Log.e(MainFragment.this.getTag(), "onStop");
+	}
+
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+		Log.e(MainFragment.this.getTag(), "onDestroyView");
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		Log.e(MainFragment.this.getTag(), "onDestroy");
+	}
+
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		// TODO Auto-generated method stub

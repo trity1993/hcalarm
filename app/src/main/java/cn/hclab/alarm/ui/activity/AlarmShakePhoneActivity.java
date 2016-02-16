@@ -44,10 +44,10 @@ import cn.hclab.alarm.mvp.presenters.AlarmShakePresenter;
 import cn.hclab.alarm.mvp.views.AlarmAppearView;
 import cn.hclab.alarm.service.AlarmService;
 import cn.hclab.alarm.ui.HcAlarmApp;
-import cn.hclab.alarm.ui.activity.base.DelayActivity;
+import cn.hclab.alarm.ui.activity.base.AppBaseActivity;
 import cn.hclab.alarm.utils.Tools;
 
-public class AlarmShakePhoneActivity extends DelayActivity implements AlarmAppearView {
+public class AlarmShakePhoneActivity extends AppBaseActivity implements AlarmAppearView {
 
 	// 感应管理器
 	private SensorManager mSensorManager;
@@ -298,6 +298,21 @@ public class AlarmShakePhoneActivity extends DelayActivity implements AlarmAppea
 			// 释放设备当前设备
 			finish();
 		}
+
+	}
+
+	@Override
+	public void initVariables() {
+
+	}
+
+	@Override
+	public void initView(Bundle savedInstanceState) {
+
+	}
+
+	@Override
+	public void loadData() {
 
 	}
 

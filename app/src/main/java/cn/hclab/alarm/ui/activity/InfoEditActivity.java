@@ -14,19 +14,15 @@ import android.widget.ImageView;
 import cc.trity.common.Common;
 import cc.trity.model.entities.AlarmUserInfo;
 import cn.hclab.alarm.R;
-import cn.hclab.alarm.api.OnEditTextListener;
 import cn.hclab.alarm.ui.HcAlarmApp;
-import cn.hclab.alarm.ui.dialog.PortraitDialog;
+import cn.hclab.alarm.ui.activity.base.AppBaseActivity;
 import cn.hclab.alarm.utils.Tools;
-import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
-public class InfoEditActivity extends SwipeBackActivity implements
-		OnClickListener, OnEditTextListener {
+public class InfoEditActivity extends AppBaseActivity {
 	private ImageView ivBtnPortrait;
 	private Button btnSave;
 	private int portraitId;
 	private EditText etSays, etNickName, etSex;
-	private final int PORTRAIT_SELECTED = 1;
 	private final int PORTRAIT_IMAGEURL = 2;
 	private AlarmUserInfo userInfo;
 	private SharedPreferences spInfoMsg;
@@ -34,16 +30,10 @@ public class InfoEditActivity extends SwipeBackActivity implements
 	Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what){
-				case PORTRAIT_SELECTED:
-					// 更新头像
-					ivBtnPortrait.setImageDrawable(getResources().obtainTypedArray(
-							R.array.image_portrait_big).getDrawable(portraitId));
-					break;
 				case PORTRAIT_IMAGEURL:
 					ivBtnPortrait.setImageBitmap((Bitmap)msg.obj);
 					break;
 			}
-
 		};
 	};
 
@@ -52,21 +42,38 @@ public class InfoEditActivity extends SwipeBackActivity implements
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_info_edit);
-		hcAlarmApp=(HcAlarmApp)getApplication();
-		initView();
-		getInfoMsg();// 获取数据
-		// 设置滑动后退
+		this.init(savedInstanceState);
 	}
 
-	private void initView() {
+	@Override
+	public void initVariables() {
+		hcAlarmApp=(HcAlarmApp)getApplication();
+	}
+
+	@Override
+	public void initView(Bundle savedInstanceState) {
 		ivBtnPortrait = (ImageView) findViewById(R.id.info_edit_iv_portrait);
 		btnSave = (Button) findViewById(R.id.info_edit_save);
 		etSays = (EditText) findViewById(R.id.info_edit_says);
 		etNickName = (EditText) findViewById(R.id.info_edit_nickName);
 		etSex = (EditText) findViewById(R.id.info_edit_sex);
 		// 监听事件
-		ivBtnPortrait.setOnClickListener(this);
-		btnSave.setOnClickListener(this);
+		btnSave.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				saveInfoMsg();
+
+			}
+		});
+	}
+
+	@Override
+	public void loadData() {
+		getInfoMsg();
+	}
+
+	private void initView() {
+
 	}
 
 	/*
@@ -120,32 +127,4 @@ public class InfoEditActivity extends SwipeBackActivity implements
 		}
 		finish();
 	}
-
-	public void showPortraitDialog() {
-		PortraitDialog portraitDialog = new PortraitDialog();
-		portraitDialog.show(getFragmentManager(), "RankingDialog");
-	}
-
-	@Override
-	public void onClick(View view) {
-		switch (view.getId()) {
-		case R.id.info_edit_iv_portrait:
-			showPortraitDialog();
-			break;
-		case R.id.info_edit_save:
-			saveInfoMsg();
-			break;
-		default:
-			break;
-		}
-	}
-
-	@Override
-	public void updateContent(String response) {
-		if (!response.equals("")) {
-			portraitId = Integer.parseInt(response);
-			mHandler.sendEmptyMessage(PORTRAIT_SELECTED);
-		}
-	}
-
 }

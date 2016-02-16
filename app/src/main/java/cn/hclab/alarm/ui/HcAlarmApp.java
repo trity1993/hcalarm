@@ -12,9 +12,9 @@ import java.util.Calendar;
 import java.util.List;
 
 import cc.trity.common.Common;
+import cc.trity.library.utils.GsonUtils;
 import cc.trity.model.entities.AlarmMsg;
 import cc.trity.model.entities.AlarmUserInfo;
-import cn.hclab.alarm.utils.GsonTools;
 
 /*
  * 进行共享数据，已经相应广告的sdk的初始化
@@ -41,7 +41,7 @@ public class HcAlarmApp extends Application {
 		String alarmListContent = mSharedPreferences.getString(
 				Common.KEY_FLARM_LIST, null);
 		if (alarmListContent != null) {
-			alarmList = GsonTools.getAlarmInfoList(alarmListContent);
+			alarmList = GsonUtils.fromJsonList(alarmListContent,AlarmMsg.class);
 			for (int i = 0; i < alarmList.size(); i++) {
 				AlarmMsg mAlarmInfo = alarmList.get(i);
 				Log.i("item", mAlarmInfo.getWeek() + mAlarmInfo.getLabel() + mAlarmInfo.getTime()
@@ -54,7 +54,7 @@ public class HcAlarmApp extends Application {
 		String userInfoContent=mSharedPreferences.getString(
 				Common.KEY_USERINFO, null);
 		if(userInfoContent!=null){
-			userInfo=GsonTools.getClass(userInfoContent,AlarmUserInfo.class);
+			userInfo= GsonUtils.getClass(userInfoContent, AlarmUserInfo.class);
 		}
 		// 获取广告，看是否进行显示
 		/*String strAdv = mSharedPreferences.getString(Common.KEY_ADV, null);
@@ -145,7 +145,7 @@ public class HcAlarmApp extends Application {
 	 * 保存闹钟列表到sharepreference
 	 */
 	public void saveAlarmList(List<AlarmMsg> dataAlarmList) {
-		String result = GsonTools.createGsonString(dataAlarmList);
+		String result = GsonUtils.createGsonString(dataAlarmList);
 		Editor editor = getSharedPreferences(Common.CONFIG,
 				Context.MODE_PRIVATE).edit();
 		editor.putString(Common.KEY_FLARM_LIST, result);
@@ -157,7 +157,7 @@ public class HcAlarmApp extends Application {
 	 */
 	public void saveUserInfo(AlarmUserInfo userInfo) {
 		if(userInfo!=null){
-			String result = GsonTools.createGsonString(userInfo);
+			String result = GsonUtils.createGsonString(userInfo);
 			Editor editor = getSharedPreferences(Common.CONFIG,
 					Context.MODE_PRIVATE).edit();
 			editor.putString(Common.KEY_USERINFO, result);

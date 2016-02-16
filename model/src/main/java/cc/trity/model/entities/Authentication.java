@@ -4,53 +4,53 @@ package cc.trity.model.entities;
  * Created by TryIT on 2015/6/11.
  */
 public class Authentication {
-    private String openid;
-    private String access_token;
-    private String fresh_access_token;//微博独有的，可延长有效期，认证的时候需要
-    private String expires_in;
+    private String openId;
+    private String accessToken;
+    private String freshAccessToken;//微博独有的，可延长有效期，认证的时候需要
+    private String expiresIn;
     public Authentication(){}
 
     public Authentication( String openid,String access_token,String expires_in){
-        this.openid=openid;
-        this.access_token=access_token;
-        this.expires_in=expires_in;
+        this.openId=openid;
+        this.accessToken=access_token;
+        this.expiresIn=expires_in;
     }
     public Authentication( String openid,String access_token,String expires_in,String fresh_access_token){
-        this.openid=openid;
-        this.access_token=access_token;
-        this.expires_in=expires_in;
-        this.fresh_access_token=fresh_access_token;
+        this.openId=openid;
+        this.accessToken=access_token;
+        this.expiresIn=expires_in;
+        this.freshAccessToken=fresh_access_token;
     }
 
-    public String getOpenid() {
-        return openid;
+    public String getOpenId() {
+        return openId;
     }
 
-    public void setOpenid(String openid) {
-        this.openid = openid;
+    public void setOpenId(String openId) {
+        this.openId = openId;
     }
 
-    public String getAccess_token() {
-        return access_token;
+    public String getAccessToken() {
+        return accessToken;
     }
 
-    public void setAccess_token(String access_token) {
-        this.access_token = access_token;
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 
-    public String getExpires_in() {
-        return expires_in;
+    public String getFreshAccessToken() {
+        return freshAccessToken;
     }
 
-    public void setExpires_in(String expires_in) {
-        this.expires_in = expires_in;
+    public void setFreshAccessToken(String freshAccessToken) {
+        this.freshAccessToken = freshAccessToken;
     }
 
-    public String getFresh_access_token() {
-        return fresh_access_token;
+    public String getExpiresIn() {
+        return expiresIn;
     }
 
-    public void setFresh_access_token(String fresh_access_token) {
-        this.fresh_access_token = fresh_access_token;
+    public void setExpiresIn(String expiresIn) {
+        this.expiresIn = expiresIn;
     }
 }

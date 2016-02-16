@@ -2,15 +2,15 @@
 package me.imid.swipebacklayout.lib.app;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
+import cc.trity.library.activity.BaseActivity;
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.Utils;
 /*
  * 默认是从左往右滑动是退后
  */
-public class SwipeBackActivity extends ActionBarActivity implements SwipeBackActivityBase {
+public abstract class SwipeBackActivity extends BaseActivity implements SwipeBackActivityBase {
     private SwipeBackActivityHelper mHelper;
 
     @Override

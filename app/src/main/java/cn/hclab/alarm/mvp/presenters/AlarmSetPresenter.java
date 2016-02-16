@@ -1,6 +1,7 @@
 package cn.hclab.alarm.mvp.presenters;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 
 import java.util.Calendar;
@@ -18,11 +19,16 @@ public class AlarmSetPresenter {
     private AlarmSetView alarmSetView;
     private HcAlarmApp hcAlarmApp;
     private AlarmMsg alarmInfo;
+    private int alarmPosition=-1;//用来标记是修改哪一个闹钟
 
     public AlarmSetPresenter(AlarmSetView alarmSetView, HcAlarmApp hcAlarmApp){
         this.alarmSetView=alarmSetView;
         this.hcAlarmApp=hcAlarmApp;
         alarmInfo = new AlarmMsg();
+    }
+    public AlarmSetPresenter(AlarmSetView alarmSetView, HcAlarmApp hcAlarmApp,int alarmPosition){
+        this(alarmSetView,hcAlarmApp);
+        this.alarmPosition=alarmPosition;
     }
 
     /**
@@ -50,7 +56,13 @@ public class AlarmSetPresenter {
         alarmInfo.setOpen(true);
 
         // 保存完数据就进行加入list,即可显示
-        dataAlarmList.add(alarmInfo);
+        if(alarmPosition!=-1){//判断是否修改还是加入的操作
+            dataAlarmList.set(alarmPosition,alarmInfo);
+            //还要进行删除闹钟
+        }else{
+            dataAlarmList.add(alarmInfo);
+        }
+//        alarmInfo=Collections.sort(alarmInfo);
         // 改变整个共享数据：AlarmList
         hcAlarmApp.setAlarmList(dataAlarmList);
         // 变成json的格式进行存储
@@ -71,6 +83,7 @@ public class AlarmSetPresenter {
         Log.e("alarmidSet", requestCode + "");
         Intent alarmIntent=new Intent(Common.ALARM_MSG);//通过此intent来进行传递信息，来管理到底是哪一闹钟在响应
 
+        alarmIntent.setData(Uri.parse("content://calendar/calendar_alerts/1"));
         alarmIntent.putExtra(Common.ALARM_ID, requestCode);
 
         alarmSetView.createAlarm(currentTime.getTimeInMillis(),requestCode,alarmIntent);

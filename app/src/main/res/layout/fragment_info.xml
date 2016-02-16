@@ -51,8 +51,8 @@
             android:layout_weight="3"
             android:orientation="horizontal" >
 
-            <!--<Button
-                android:id="@+id/info_btn_logout"
+            <Button
+                android:id="@+id/info_btn_sign"
                 android:layout_width="120dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
@@ -60,39 +60,9 @@
                 android:background="@drawable/common_round_corner_green"
                 android:drawableLeft="@drawable/person"
                 android:paddingLeft="@dimen/common_edge_padding_small"
-                android:text="注销"
-                android:textColor="@android:color/white"
-                android:visibility="gone" />-->
-            <ViewStub
-                android:id="@+id/viewstub_logout"
-                android:layout_width="120dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center_horizontal"
-                android:layout="@layout/include_button"
-                android:layout_margin="@dimen/common_edge_margin"
-                android:paddingLeft="@dimen/common_edge_padding_small"/>
-
-            <Button
-                android:id="@+id/info_btn_login"
-                android:layout_width="75dp"
-                android:layout_height="40dp"
-                android:layout_marginRight="@dimen/common_edge_margin_big"
-                android:background="@drawable/common_round_corner_green"
-                android:drawableLeft="@drawable/person"
-                android:paddingLeft="@dimen/common_edge_padding_small"
-                android:text="登录"
+                android:text="登录/注册"
                 android:textColor="@android:color/white" />
 
-            <Button
-                android:id="@+id/info_btn_register"
-                android:layout_width="75dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="@dimen/common_edge_margin_big"
-                android:background="@drawable/common_round_corner_blue"
-                android:drawableLeft="@drawable/register_icon"
-                android:paddingLeft="@dimen/common_edge_padding_small"
-                android:text="注册"
-                android:textColor="@android:color/white" />
         </LinearLayout>
 
         <LinearLayout
