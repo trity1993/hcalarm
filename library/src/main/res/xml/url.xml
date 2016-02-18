@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<url>
+    <Node
+        Expires="0"
+        Key="getUserInfo"
+        NetType="get"
+        Url="https://api.weibo.com/2/users/show.json" />
+    <Node
+        Expires="0"
+        Key="getWeatherForecast"
+        NetType="get"
+        Url="http://open.weather.com.cn/data/" />
+</url>

@@ -8,7 +8,6 @@
 ### app截图
 ![](https://o1whyeemo.qnssl.com/image/view/app_screenshots/e027f0e3003401c4a51b50e1a514171e/528)
 
-
 ### 下载地址
 [梦唤闹钟](https://www.pgyer.com/hcalarm)
 

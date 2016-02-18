@@ -72,9 +72,6 @@ public class InfoEditActivity extends AppBaseActivity {
 		getInfoMsg();
 	}
 
-	private void initView() {
-
-	}
 
 	/*
 	 * 获取数据，从sharePreference中获取,并进行设置
